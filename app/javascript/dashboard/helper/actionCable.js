@@ -4,6 +4,7 @@ import DashboardAudioNotificationHelper from './AudioAlerts/DashboardAudioNotifi
 import { BUS_EVENTS } from 'shared/constants/busEvents';
 import { emitter } from 'shared/helpers/mitt';
 import { useImpersonation } from 'dashboard/composables/useImpersonation';
+import types from 'dashboard/store/mutation-types';
 
 const { isImpersonating } = useImpersonation();
 
@@ -35,6 +36,20 @@ class ActionCableConnector extends BaseActionCableConnector {
       'account.cache_invalidated': this.onCacheInvalidate,
       'copilot.message.created': this.onCopilotMessageCreated,
     };
+  }
+
+  hasTeamAccess(data) {
+    const currentUserRole = this.app.$store.getters['getCurrentUser']?.role;
+    if (currentUserRole != "agent") return true; // Se não for agente, pula a verificação de time
+
+    const teamId = data?.meta?.team?.id;
+    if (!teamId) return true; // Se a conversa não está atribuída a time nenhum, libera
+
+    const allTeams = this.app.$store.getters['teams/getTeams'] || [];
+
+    // Verifica se o usuário é membro do time da conversa
+    const isMember = allTeams.some(team => team.id === teamId && team.is_member);
+    return isMember;
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -82,6 +97,10 @@ class ActionCableConnector extends BaseActionCableConnector {
   };
 
   onConversationCreated = data => {
+    if (!this.hasTeamAccess(data)) {
+      this.app.$store.commit(types.DELETE_CONVERSATION, data.id);
+      return;
+    }
     this.app.$store.dispatch('addConversation', data);
     this.fetchConversationStats();
   };
@@ -94,6 +113,10 @@ class ActionCableConnector extends BaseActionCableConnector {
   onLogout = () => AuthAPI.logout();
 
   onMessageCreated = data => {
+    if (!this.hasTeamAccess(data)) {
+      this.app.$store.commit(types.DELETE_CONVERSATION, data.id);
+      return;
+    }
     const {
       conversation: { last_activity_at: lastActivityAt },
       conversation_id: conversationId,
@@ -115,6 +138,10 @@ class ActionCableConnector extends BaseActionCableConnector {
   };
 
   onConversationUpdated = data => {
+    if (!this.hasTeamAccess(data)) {
+      this.app.$store.commit(types.DELETE_CONVERSATION, data.id);
+      return;
+    }
     this.app.$store.dispatch('updateConversation', data);
     this.fetchConversationStats();
   };

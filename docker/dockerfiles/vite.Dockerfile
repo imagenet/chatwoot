@@ -1,9 +1,11 @@
-FROM chatwoot:development
+FROM chatwoot/chatwoot:develop
 
 ENV PNPM_HOME="/root/.local/share/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 
-RUN chmod +x docker/entrypoints/vite.sh
+COPY ./docker/entrypoints/vite.sh /docker/entrypoints/vite.sh
+RUN chmod +x /docker/entrypoints/vite.sh
 
 EXPOSE 3036
+ENTRYPOINT ["/docker/entrypoints/vite.sh"]
 CMD ["bin/vite", "dev"]

@@ -44,6 +44,10 @@ properties:
     type: boolean
     description: Allow messages after conversation is resolved
     example: true
+  private:
+    type: boolean
+    description: Prevents agents from using the inbox to open new conversations
+    example: false
   lock_to_single_conversation:
     type: boolean
     description: Lock to single conversation

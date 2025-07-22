@@ -62,8 +62,14 @@ export default {
   },
   mounted() {
     this.setDefaults();
+    this.fetchInboxSettings();
   },
   methods: {
+    fetchInboxSettings() {
+      this.$store.dispatch('inboxes/get').then(() => {
+        this.isPrivate = this.inbox.private;
+      });
+    },
     setDefaults() {
       this.hmacMandatory = this.inbox.hmac_mandatory || false;
       this.allowedDomains = this.inbox.allowed_domains || '';
@@ -80,6 +86,7 @@ export default {
         const payload = {
           id: this.inbox.id,
           formData: false,
+          private: this.isPrivate,
           channel: {
             private: this.isPrivate,
             hmac_mandatory: this.hmacMandatory,

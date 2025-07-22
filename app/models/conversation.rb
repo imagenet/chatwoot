@@ -75,7 +75,13 @@ class Conversation < ApplicationRecord
   enum status: { open: 0, resolved: 1, pending: 2, snoozed: 3 }
   enum priority: { low: 0, medium: 1, high: 2, urgent: 3 }
 
-  scope :unassigned, -> { where(assignee_id: nil) }
+  scope :unassigned, ->(user_role, agent) do
+    if user_role == 'agent'
+      where(assignee_id: nil, team_id: agent.teams.pluck(:id)).or(where(assignee_id: nil, team_id: nil))
+    else
+      where(assignee_id: nil)
+    end
+  end
   scope :assigned, -> { where.not(assignee_id: nil) }
   scope :assigned_to, ->(agent) { where(assignee_id: agent.id) }
   scope :unattended, -> { where(first_reply_created_at: nil).or(where.not(waiting_since: nil)) }

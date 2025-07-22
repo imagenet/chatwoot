@@ -98,10 +98,18 @@ class FilterService
     lt_gt_filter_values(query_hash)
   end
 
+  def account_user
+    AccountUser.find_by(account_id: @account.id, user_id: @user.id)
+  end
+
+  def user_role
+    account_user&.role
+  end
+
   def set_count_for_all_conversations
     [
       @conversations.assigned_to(@user).count,
-      @conversations.unassigned.count,
+      @conversations.unassigned(user_role, @user).count,
       @conversations.count
     ]
   end

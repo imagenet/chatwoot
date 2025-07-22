@@ -9,18 +9,18 @@ class Api::V1::Accounts::ConversationsController < Api::V1::Accounts::BaseContro
   ATTACHMENT_RESULTS_PER_PAGE = 100
 
   def index
-    result = conversation_finder.perform
+    result = conversation_finder.perform(current_user)
     @conversations = result[:conversations]
     @conversations_count = result[:count]
   end
 
   def meta
-    result = conversation_finder.perform
+    result = conversation_finder.perform(current_user)
     @conversations_count = result[:count]
   end
 
   def search
-    result = conversation_finder.perform
+    result = conversation_finder.perform(current_user)
     @conversations = result[:conversations]
     @conversations_count = result[:count]
   end

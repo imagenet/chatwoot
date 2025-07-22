@@ -470,6 +470,7 @@ export const inboxes = [
     widget_color: '#1f93ff',
     website_url: 'https://acme.inc',
     hmac_mandatory: false,
+    private: false,
     welcome_title: '',
     welcome_tagline: '',
     web_widget_script:
@@ -595,6 +596,7 @@ export const inboxes = [
     widget_color: null,
     website_url: null,
     hmac_mandatory: null,
+    private: null,
     welcome_title: null,
     welcome_tagline: null,
     web_widget_script: null,

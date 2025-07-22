@@ -105,6 +105,9 @@ properties:
   hmac_mandatory:
     type: boolean
     description: Whether HMAC verification is mandatory
+  private:
+    type: boolean
+    description: Prevents agents from using the inbox to open new conversations
   selected_feature_flags:
     type: object
     description: Selected feature flags for the inbox
