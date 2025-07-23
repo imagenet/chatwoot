@@ -25,6 +25,7 @@ module Enterprise::SuperAdmin::AppConfigsController
       LOGO_DARK
       BRAND_NAME
       INSTALLATION_NAME
+      INSTALLATION_DESCRIPTION
       BRAND_URL
       WIDGET_BRAND_URL
       TERMS_URL

@@ -18,6 +18,10 @@
   value: 'Chatwoot'
   display_title: 'Installation Name'
   description: 'The installation wide name that would be used in the dashboard, title etc.'
+- name: INSTALLATION_DESCRIPTION
+  value: "Chatwoot is a customer support solution that helps companies engage customers over Messenger, Twitter, Telegram, WeChat, Whatsapp. Simply connect your channels and converse with your customers from a single place. Easily add new agents to your system and have them own and resolve conversations with customers.Chatwoot also gives you real-time reports to measure your team's performance, canned responses to easily respond to frequently asked questions and private notes for agents to collaborate among themselves."
+  display_title: 'Installation Description'
+  description: 'The installation description that would be used in the description meta tag.'
 - name: LOGO_THUMBNAIL
   value: '/brand-assets/logo_thumbnail.svg'
   display_title: 'Logo Thumbnail'
