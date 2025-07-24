@@ -103,3 +103,5 @@ Procfile.worktree
 
 # pnpm
 .pnpm-store
+
+docker-compose*
