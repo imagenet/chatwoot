@@ -594,6 +594,9 @@
       },
       "ENABLE_HMAC": {
         "LABEL": "Enable"
+      },
+      "ENABLE_PRIVATE": {
+        "LABEL": "Enable"
       }
     },
     "DELETE": {
@@ -718,6 +721,8 @@
       "HMAC_LINK_TO_DOCS": "You can read more here.",
       "HMAC_MANDATORY_VERIFICATION": "Enforce User Identity Validation",
       "HMAC_MANDATORY_DESCRIPTION": "If enabled, requests that cannot be verified will be rejected.",
+      "INBOX_PRIVATE": "Mark inbox as private",
+      "INBOX_PRIVATE_DESCRIPTION": "Prevents agents from using the inbox to open new conversations.",
       "INBOX_IDENTIFIER": "Inbox Identifier",
       "INBOX_IDENTIFIER_SUB_TEXT": "Use the `inbox_identifier` token shown here to authentication your API clients.",
       "FORWARD_EMAIL_TITLE": "Forward to Email",

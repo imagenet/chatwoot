@@ -594,6 +594,9 @@
       },
       "ENABLE_HMAC": {
         "LABEL": "Ativar"
+      },
+      "ENABLE_PRIVATE": {
+        "LABEL": "Ativar"
       }
     },
     "DELETE": {
@@ -718,6 +721,8 @@
       "HMAC_LINK_TO_DOCS": "Você pode ler mais aqui.",
       "HMAC_MANDATORY_VERIFICATION": "Forçar validação de identidade do usuário",
       "HMAC_MANDATORY_DESCRIPTION": "Se ativado, as solicitações sem o 'identifier_hash' serão rejeitadas.",
+      "INBOX_PRIVATE": "Marcar a caixa de entrada como privada",
+      "INBOX_PRIVATE_DESCRIPTION": "Previne que atendentes usem a caixa de entrada para abrir novas conversas.",
       "INBOX_IDENTIFIER": "Identificador da caixa de entrada",
       "INBOX_IDENTIFIER_SUB_TEXT": "Use o token 'inbox_identifier' mostrado aqui para autenticar os seus clientes API.",
       "FORWARD_EMAIL_TITLE": "Encaminhar para o E-mail",
