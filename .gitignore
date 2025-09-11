@@ -64,13 +64,11 @@ package-lock.json
 
 *.dump
 
-
 # cypress
 test/cypress/videos/*
 
 /config/master.key
 /config/*.enc
-
 
 # yalc for local testing
 .yalc
@@ -89,7 +87,6 @@ yarn-debug.log*
 # https://vitejs.dev/guide/env-and-mode.html#env-files
 *.local
 
-
 # TextEditors & AI Agents config files
 .vscode
 .claude/settings.local.json
@@ -104,3 +101,6 @@ CLAUDE.local.md
 .pnpm-store/*
 local/
 Procfile.worktree
+
+# pnpm
+.pnpm-store

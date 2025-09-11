@@ -38,6 +38,7 @@ export default {
     return {
       hmacMandatory: false,
       allowMobileWebview: false,
+      isPrivate: false,
       whatsAppInboxAPIKey: '',
       isRequestingReauthorization: false,
       isSyncingTemplates: false,
@@ -86,8 +87,12 @@ export default {
       this.$nextTick(() => {
         this.isSettingDefaults = false;
       });
+      this.isPrivate = this.inbox.private || false;
     },
     handleHmacFlag() {
+      this.updateInbox();
+    },
+    handlePrivateFlag() {
       this.updateInbox();
     },
     async updateInbox() {
@@ -96,6 +101,7 @@ export default {
           id: this.inbox.id,
           formData: false,
           channel: {
+            private: this.isPrivate,
             hmac_mandatory: this.hmacMandatory,
           },
         };
@@ -326,6 +332,22 @@ export default {
         />
         <label for="hmacMandatory" class="text-body-main text-n-slate-12">
           {{ $t('INBOX_MGMT.EDIT.ENABLE_HMAC.LABEL') }}
+        </label>
+      </div>
+    </SettingsFieldSection>
+    <SettingsFieldSection
+      :title="$t('INBOX_MGMT.SETTINGS_POPUP.INBOX_PRIVATE')"
+      :sub-title="$t('INBOX_MGMT.SETTINGS_POPUP.INBOX_PRIVATE_DESCRIPTION')"
+    >
+      <div class="flex items-center gap-2">
+        <input
+          id="private"
+          v-model="isPrivate"
+          type="checkbox"
+          @change="handlePrivateFlag"
+        />
+        <label for="private">
+          {{ $t('INBOX_MGMT.EDIT.ENABLE_PRIVATE.LABEL') }}
         </label>
       </div>
     </SettingsFieldSection>
